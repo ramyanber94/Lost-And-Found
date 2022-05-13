@@ -1,0 +1,2 @@
+# Lost-And-Found
+Sample app aims to help the community if a user has an account in our app and loses their wallet. And another user found the item and entered the name of the card id with the same number of cards. The app will match and notify the user with the information to connect and return what is lost.  Also, If the lost item has a picture and the same thing in the picture is found in our collection will match the images and return them to the users for information to connect.
