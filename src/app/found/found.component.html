@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+<div class="card bg-secondary shadow border-0">
+    <section class="section pb-0 section-components">
+        <div *ngIf="status">
+            <div *ngFor="let alert of alerts">
+                <ngb-alert [type]="alert.type" [dismissible]="true" (close)="close(alert)">
+                    <ng-container *ngIf="alert.icon">
+                        <div class="alert-inner--icon">
+                            <i class="{{alert.icon}}"></i>
+                        </div>
+                    </ng-container>
+                    <span class="alert-inner--text"> <strong>{{alert.strong}} </strong>{{ alert.message }}</span>
+                </ngb-alert>
+            </div>
+
+        </div>
+
+        <div class="progress-wrapper">
+            <div class="progress-info">
+                <div class="col-sm-9">
+                    <h3 class="heading-title text-warning mb-0">Increase chance to get the find item matched in our
+                        collection.</h3>
+                </div>
+                <div class="progress-percentage">
+                    <span>{{value}}%</span>
+                </div>
+            </div>
+            <ngb-progressbar type="success" [value]="value"></ngb-progressbar>
+        </div>
+        <form [formGroup]="foundForm" (ngSubmit)="onFormSubmit()">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-sm-6 ">
+                    <div class="form-group ">
+                        <div class="mb-3">
+                            <small class="text-uppercase font-weight-bold">Full name in any card id in the
+                                wallet.</small>
+                            <input type="text" placeholder="Full name" class="form-control form-control-alternative"
+                                (change)="fullNameChange($event)" id="fullName" name="fullName"
+                                formControlName="fullName" />
+                        </div>
+
+                        <div *ngIf="foundForm.get('fullName')?.invalid && (foundForm.get('fullName')?.dirty || foundForm.get('fullName')?.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="foundForm.get('fullName')?.errors?.required">
+                                Full Name is required.
+                            </div>
+                            <div *ngIf="foundForm.get('fullName')?.errors?.minlength">
+                                Full Name must be at least 4 characters long.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-sm-6 ">
+                    <!-- Toggle buttons -->
+                    <div class="mb-3">
+                        <small class="text-uppercase font-weight-bold">Wallet included national id.</small>
+                    </div>
+                    <label class="custom-toggle">
+                        <input type="checkbox" (change)="checkCheckBoxvalue($event)">
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="showNational" class="row justify-content-center">
+                <div class="col-lg-4 col-sm-6 ">
+                    <div class="form-group ">
+                        <div class="mb-3">
+                            <small class="text-uppercase font-weight-bold">National card number.</small>
+
+                        </div>
+                        <div>
+                            <input type="number" placeholder="National card number."
+                                class="form-control form-control-alternative" name="nationalCardNo" id="nationalCardNo"
+                                (change)="nationalCardChange($event)" formControlName="nationalCardNo" />
+                        </div>
+                        <div *ngIf="foundForm.get('nationalCardNo')?.invalid && (foundForm.get('nationalCardNo')?.dirty || foundForm.get('nationalCardNo')?.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="foundForm.get('nationalCardNo')?.errors?.required">
+                                National card number is required.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-sm-6 ">
+                    <!-- Toggle buttons -->
+                    <div class="mb-3">
+                        <small class="text-uppercase font-weight-bold">Wallet included bank card.</small>
+                    </div>
+                    <label class="custom-toggle">
+                        <input type="checkbox" (change)="checkCheckBoxBank($event)">
+                        <span class=" custom-toggle-slider rounded-circle"></span>
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="showBank" class="row justify-content-center">
+                <div class="col-lg-4 col-sm-6 ">
+                    <div class="form-group ">
+                        <div class="mb-3">
+                            <small class="text-uppercase font-weight-bold">Digits of the bank card.</small>
+                        </div>
+                        <input type="number" placeholder="Digits of the bank card."
+                            class="form-control form-control-alternative" id="bankCardNo" name="bankCardNo"
+                            (change)="bankInputChange($event)" formControlName="bankCardNo" />
+                    </div>
+                    <div *ngIf="foundForm.get('bankCardNo')?.invalid && (foundForm.get('bankCardNo')?.dirty || foundForm.get('bankCardNo')?.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="foundForm.get('bankCardNo')?.errors?.required">
+                            Bank card number is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-sm-4">
+                    <button type="submit" class="btn btn-block btn-primary mb-3">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
+<app-footer></app-footer>
