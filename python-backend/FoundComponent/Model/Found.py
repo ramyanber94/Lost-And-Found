@@ -2,7 +2,8 @@ class Found:
     foundObject = {
         'id': '',
         'fullName': '',
-        'cardId': ''
+        'nationalCardId': '',
+        'bankCardId': ''
     }
 
     def __init__(self, body):

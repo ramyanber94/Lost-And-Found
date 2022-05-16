@@ -2,7 +2,8 @@ class Lost:
     lostObject = {
         'id': '',
         'fullName': '',
-        'cardId': ''
+        'nationalCardId': '',
+        'bankCardId': ''
     }
 
     def __init__(self, body):
